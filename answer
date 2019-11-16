@@ -1,0 +1,90 @@
+../Benchmark/r1_p2.txt:
+	Mode: GREEDYMODE
+		LOOK_AHEAD: 0
+			TotalLength: 1387209.892068
+			TotalNumTsv: 131
+			TotalPower:  70469564891.558029 watt
+		LOOK_AHEAD: 1
+			TotalLength: 1389720.033665
+			TotalNumTsv: 137
+			TotalPower:  70991136969.557541 watt
+	Mode: MMMMODE
+		LOOK_AHEAD: 0
+			TotalLength: 1545748.066255
+			TotalNumTsv: 80
+			TotalPower:  71216584308.146133 watt
+Reduction1: 10.26%
+Reduction2: -0.18%
+
+../Benchmark/r2_p2.txt:
+	Mode: GREEDYMODE
+		LOOK_AHEAD: 0
+			TotalLength: 2823290.578043
+			TotalNumTsv: 305
+			TotalPower:  172215088647.636932 watt
+		LOOK_AHEAD: 1
+			TotalLength: 2799467.693938
+			TotalNumTsv: 297
+			TotalPower:  170520989585.416412 watt
+	Mode: MMMMODE
+		LOOK_AHEAD: 0
+			TotalLength: 3357010.825974
+			TotalNumTsv: 97
+			TotalPower:  157634231788.051941 watt
+Reduction1: 15.90%
+Reduction2: 0.84%
+
+../Benchmark/r3_p2.txt:
+	Mode: GREEDYMODE
+		LOOK_AHEAD: 0
+			TotalLength: 3678922.438115
+			TotalNumTsv: 501
+			TotalPower:  246592006217.702576 watt
+		LOOK_AHEAD: 1
+			TotalLength: 3709004.609717
+			TotalNumTsv: 520
+			TotalPower:  250338372759.848816 watt
+	Mode: MMMMODE
+		LOOK_AHEAD: 0
+			TotalLength: 4884829.213872
+			TotalNumTsv: 156
+			TotalPower:  232794121359.510590 watt
+Reduction1: 24.69%
+Reduction2: -0.82%
+
+../Benchmark/r4_p2.txt:
+	Mode: GREEDYMODE
+		LOOK_AHEAD: 0
+			TotalLength: 7608500.189989
+			TotalNumTsv: 953
+			TotalPower:  370385717471.671997 watt
+		LOOK_AHEAD: 1
+			TotalLength: 7516179.363683
+			TotalNumTsv: 982
+			TotalPower:  367731629674.081604 watt
+	Mode: MMMMODE
+		LOOK_AHEAD: 0
+			TotalLength: 9533152.606820
+			TotalNumTsv: 100
+			TotalPower:  425692875076.416016 watt
+Reduction1: 20.19%
+Reduction2: 1.21%
+
+../Benchmark/r5_p2.txt:
+	Mode: GREEDYMODE
+		LOOK_AHEAD: 0
+			TotalLength: 11003578.260298
+			TotalNumTsv: 1554
+			TotalPower:  562632429896.585815 watt
+		LOOK_AHEAD: 1
+			TotalLength: 10733439.353991
+			TotalNumTsv: 1530
+			TotalPower:  554851853394.928833 watt
+	Mode: MMMMODE
+		LOOK_AHEAD: 0
+			TotalLength: 14323102.457987
+			TotalNumTsv: 100
+			TotalPower:  658025350790.017456 watt
+Reduction1: 23.18%
+Reduction2: 2.46%
+
