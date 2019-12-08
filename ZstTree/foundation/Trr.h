@@ -7,10 +7,10 @@
 #include "Coordinate.h"
 
 template <typename NN, bool DOCHECK = true>
-class F_Trr
+class F_Trr//todo 为什么感觉这里只有正的矩形，没有斜的
 {
 public:
-    void MakeDiamond ( const F_Point<NN, DOCHECK> p, NN r ) {
+    void MakeDiamond ( const F_Point<NN, DOCHECK> p, NN r ) {//todo 为什么这么计算
         NN tval;
 
         tval = p.x - p.y;
@@ -76,7 +76,7 @@ public:
         } else { exit(0); }
     }
     
-    void ErrCorrection ( ) {
+    void ErrCorrection ( ) {//todo 这种处理是为了避免FUZZ吗，即将差小于FUZZ的情况直接改成等于？
         NN a = xlow ;
         NN b = xhi  ;
         if ( a == b ) {

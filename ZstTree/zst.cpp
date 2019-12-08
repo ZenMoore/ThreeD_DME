@@ -245,7 +245,7 @@ int ZstTree::init_ExG_DME() {
     return n;
 }
 /*********************************************************************/
-/*  select the cloest pair of merging segments.                      */
+/*  select the closest pair of merging segments.                      */
 /*********************************************************************/
 int pair_compare_inc(const void *p1, const void *q1) {
 

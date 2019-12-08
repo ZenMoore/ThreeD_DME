@@ -17,7 +17,7 @@ using namespace std;
 #define CHECK YES
 #define SHOW_INFO NO
 
-#define DBL_MAX __DBL_MAX__
+#define DBL_MAX __DBL_MAX__//todo 这是什么，下面的PUCAP_SCALE是什么
 #define NIL -1
 
 #define BUCKET_CAPACITY   240
@@ -68,7 +68,7 @@ public:
     //     }
     // }
 
-    int npts;
+    int npts;//todo npts, uod, side 是什么？
     PointType vertex[2];
     DOUBLE L_EdgeLen, R_EdgeLen;
     DOUBLE dist, capac, subtree_cost;
@@ -86,7 +86,7 @@ public:
     PointType m_mergePt;
     MsType segment;
     TrrType trr;
-    int id, L, R, PAR, root_id;
+    int id, L, R, PAR, root_id;//todo 这里为什么是int, par是什么
 };
 
 typedef struct buckettype {

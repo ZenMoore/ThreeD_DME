@@ -1,13 +1,13 @@
 #include "utils.h"
 
 /* types of interseciton of two line segments */
-#define P1             1
-#define P2             2
-#define P3             3
-#define P4             4
-#define XING           5
-#define OVERLAPPING    6
-#define SAME_EDGE      7
+#define P1             1//交于端点1
+#define P2             2//交于端点2
+#define P3             3//交于端点3
+#define P4             4//交于端点4
+#define XING           5//交叉
+#define OVERLAPPING    6//重合
+#define SAME_EDGE      7//完全重合
 
 
 void TRR2pt(TrrType *trr, PointType *pt) {
@@ -40,7 +40,7 @@ int TRR2segment(TrrType *trr, PointType pt[]) {
         TRR2pt(trr, &(pt[0]));
         n = 1;
     } else if (a == 0 || b == 0 ) {
-        ms2line(trr, &(pt[0]), &(pt[1]));
+        ms2line(trr, &(pt[0]), &(pt[1]));//todo 我的理解是：这是需要detour的情况，我们通过将线段延长后，将线连到延长段上完成detour
         n = 2;
     } else {
         assert(0);
@@ -74,7 +74,7 @@ bool parallel_line(PointType p1,PointType p2,PointType p3,PointType p4) {
     }
     return(NO);
 }
-void build_trr(TrrType *ms, DOUBLE d, TrrType *trr) {
+void build_trr(TrrType *ms, DOUBLE d, TrrType *trr) {//todo TrrType能是斜矩形吗？
     trr->xlow = ms->xlow - d;
     trr->xhi  = ms->xhi + d;
 
@@ -84,7 +84,7 @@ void build_trr(TrrType *ms, DOUBLE d, TrrType *trr) {
     trr->z = ms->z;
 
 } /* build_trr */
-void build_NodeTRR(NodeType *node) {
+void build_NodeTRR(NodeType *node) {//todo 解释一下这个trr生成算法
     int j;
     DOUBLE  x, y;
     unsigned z;
@@ -142,7 +142,7 @@ void check_ms(TrrType *ms) {
     /* remove the epsilon error */
     ms->SelfDOCHECK();
 }
-void ms_to_line(TrrType *ms, DOUBLE *x1, DOUBLE *y1, int *z1, DOUBLE *x2, DOUBLE *y2, int *z2) {
+void ms_to_line(TrrType *ms, DOUBLE *x1, DOUBLE *y1, int *z1, DOUBLE *y2, DOUBLE *x2, int *z2) {//todo 这个怎么就变成了line了？还是和make diamond一样的问题
     /* *ms must be a valide merging segement */
     check_ms(ms);
     *x1 = (ms->ylow + ms->xhi ) / 2;
@@ -297,7 +297,7 @@ DOUBLE y2, DOUBLE x3, DOUBLE y3, DOUBLE x4, DOUBLE y4) {
     } else {               /* Non-parallel line segments */
         *x = ((y3-nn*x3) - (y1-mm*x1)) / (mm-nn);
         *y = ((y1 + mm*(*x - x1)) + (y3 + nn*(*x - x3))) / 2.0;
-    }
+    }//求出两线交点
 
     if (in_bbox(*x,*y,x1,y1,x2,y2) && in_bbox(*x,*y,x3,y3,x4,y4) ) {
 

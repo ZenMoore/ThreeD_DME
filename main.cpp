@@ -50,6 +50,7 @@ int main(int argc, char *argv[])
 
     int n = sizeof(fileNames) / sizeof(string);
 
+    // 无法处理参数中给出的输入文件列表
     FILE *f = fopen(outputFileName.c_str(), "w");
     for (int i = 0; i < n; i++) {
         inputSinksFileName = fileNames[i];

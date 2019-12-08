@@ -10,7 +10,7 @@ public:
     double value;
 
 public:
-    DOUBLE(void) {
+    DOUBLE() {
         value = 0;
     }
     DOUBLE(double v) {
@@ -63,15 +63,15 @@ public:
         return ABS(value - b.value) <= FUZZ;
     }
     bool operator!=(DOUBLE b) const {
-        return !(ABS(value - b.value) <= FUZZ);
+        return (ABS(value - b.value) > FUZZ);
     }
-    DOUBLE _ABS(void) {
+    DOUBLE _ABS() {
         return value >= 0 ? DOUBLE(value) : DOUBLE(-value);
     }
-    DOUBLE _SQRT(void) {
+    DOUBLE _SQRT() {
         return DOUBLE(sqrt(value));
     }
-    int _ROUND(void) {
+    int _ROUND() {
         return floor(value + 0.5);
     }
 };
