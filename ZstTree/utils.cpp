@@ -360,7 +360,7 @@ void line_to_ms(TrrType *ms, DOUBLE x1, DOUBLE y1, DOUBLE x2, DOUBLE y2, int z) 
     ms->ylow = (x1+y1); 
     ms->yhi  = (x2+y2);
     ms->xlow = (x2-y2); 
-    ms->xhi  = (x1-y1);
+    ms->xhi  = (x1-y1);//todo 还是此前的问题，为什么这个是merging segment
     ms->z = z;
     /* *ms must be a Manhattan arc. */
     check_ms(ms); 
@@ -374,7 +374,7 @@ DOUBLE ms_distance(TrrType *ms1, TrrType *ms2) {
     DOUBLE d1,d2,d3,d4;
     DOUBLE t1,t2,t3;
 
-    /* remember that ms1 and ms2 are represented in the Linfinity metric */
+    /* remember that ms1 and ms2 are represented in the Linfinity metric *///todo What is Linfinity metric
     /* first check that these are valid merging segments */
     if (CHECK == YES) check_ms(ms1);
     if (CHECK == YES) check_ms(ms2);
@@ -396,6 +396,8 @@ DOUBLE ms_distance(TrrType *ms1, TrrType *ms2) {
         (2) find min distance in x-coords
         (3) find min distance in y-coords
         (4) return distance = 0
+
+       //todo the intersection signified its totality or not?(totally intersection), if no, why the fourth(distance) = 0???
         */
 
         /* if no intersection between x & y coordinates at all, take
@@ -428,7 +430,7 @@ DOUBLE ms_distance(TrrType *ms1, TrrType *ms2) {
     else return( 0 );
   
 } /* ms_distance() */
-void make_intersect_sub( TrrType *trr1, TrrType *trr2, TrrType *t ) {
+void make_intersect_sub( TrrType *trr1, TrrType *trr2, TrrType *t ) {//todo how to work? cannot calculate correctly
 
     t->xlow = tMAX(trr1->xlow,trr2->xlow);
     t->xhi  = tMIN(trr1->xhi, trr2->xhi );
@@ -462,7 +464,7 @@ void core_mid_point(TrrType *trr, PointType *p) {
     ty = (trr->ylow + trr->yhi) / 2;
 
     p->x = (tx+ty)/2;
-    p->y = (ty-tx)/2;
+    p->y = (ty-tx)/2;//todo 这两行为何如此处理？
     p->z = trr->z;
 
 } /* core_mid_point */
@@ -479,7 +481,7 @@ DOUBLE pt2linedist_case_ms(PointType p1, PointType p2, PointType p3, PointType *
     assert(p2.z == p3.z);
     ans->z = p2.z;
 
-    return(dist);
+    return(dist);//ans 中存储了core_mid_pt的信息，但是问题再503行
 }
 DOUBLE pt2linedist(PointType p1, PointType p2, PointType p3, PointType *ans) {
     int i,n;
@@ -498,7 +500,7 @@ DOUBLE pt2linedist(PointType p1, PointType p2, PointType p3, PointType *ans) {
         assert(a == b);
         min_d = pt2linedist_case_ms(p1,p2,p3,ans);
     }
-    assert(pt_on_line_segment(*ans,p2,p3));
+    assert(pt_on_line_segment(*ans,p2,p3));//todo 为什么(为什么ans这个core_midpt一定再p2-p3的line_segment上)
     return(min_d);
 }
 
@@ -522,11 +524,21 @@ DOUBLE linedist(PointType lpt0, PointType lpt1, PointType lpt2, PointType lpt3, 
             assert(lpt2.z == lpt3.z);
             ans[0] = ans[1] = intersect; 
             ans[0].z = lpt0.z;
-            ans[1].z = lpt2.z;
+            ans[1].z = lpt2.z;//ans 实际存储了交点
             return(0.0);
         }
     }
 
+    /*
+     * 即到这里分为四种情况：
+     * (1)line1为点，line2不为点
+     * (2)line1不为点，line2为点
+     * (3)line1和line2都是点
+     * (4)line1和line2都是线段但是不交叉
+     *
+     * 这四种情况都是只考虑两线段端点间距离的最小值
+     * 嵌套两个i,j量的作用是：在点的情况下，只计算一次而在线段的情况下计算四次，从算出的所有结果中返回最小值即为line_distance
+     */
     for (int i = 0; i < n0; ++i) {
         k = (i+1)%2; 
         for (int j = 0; j < n1; ++j) {
