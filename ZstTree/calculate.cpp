@@ -368,9 +368,11 @@ DOUBLE d, DOUBLE *d1,DOUBLE *d2, bool same_tier, int *uod, int force_lor) {
         return lor;
     }
 }
+
+//lor signifies the tier of merging segment.
 DOUBLE ZstTree::calc_merge_pt_delay_sub(MsType *segment, DOUBLE d0, DOUBLE d1, bool same_tier, int lor, int uod) {
     DOUBLE t0, t1;
-    
+
     DOUBLE r = m_pures, c = m_pucap;
     DOUBLE rt = m_TsvR, ct = m_TsvC;
     DOUBLE cap1 = segment->segment_L->capac;
